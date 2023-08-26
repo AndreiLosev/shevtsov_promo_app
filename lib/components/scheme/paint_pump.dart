@@ -1,32 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:shevtsov_promo_app/components/scheme/configurable_path.dart';
+import 'package:shevtsov_promo_app/components/scheme/paint_circuit_element.dart';
 
+class PaintPump extends PaintCircuitEelement {
 
-class PaintPump extends CustomPainter {
-
-    final Color _color;
-    final double _corner;
-    final double _size;
-    final (double, double) _shift = (65, 120);
-
-    PaintPump(
-        Color color,
-    [
-        double corner = 0.0,
-        double size = 1.0,
-    ]): 
-        _color = color,
-        _size = size,
-        _corner = corner;
+    PaintPump(super.run, {super.corner = 0.0, super.size = 1.0});
 
     @override
     void paint(Canvas canvas, Size size) {
         final paint = Paint()
             ..strokeWidth = 3
-            ..color = _color
-        ;
+            ..color = run ? Colors.green : Colors.grey;
 
-        final pathConfig = PathConfig(_corner, _size, _shift);
+        final pathConfig = PathConfig(corner, this.size, shift);
 
         final path = ConfigurablePath(pathConfig)
             ..cMamoveTo(-20, -35)
@@ -46,7 +32,7 @@ class PaintPump extends CustomPainter {
             ..color = Colors.black
         ;
 
-        canvas.drawCircle(Offset(_shift.$1, _shift.$2), 40 * _size, paint);
+        canvas.drawCircle(Offset(shift.$1, shift.$2), 40 * size, paint);
         
     }
 

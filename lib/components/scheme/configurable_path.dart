@@ -47,6 +47,6 @@ class PathConfig {
     const PathConfig([
         this.corner = 0.0,
         this.size = 1.0,
-        this.shift = (0.0, 0.0),
-    ]);
+        (double, double)? shift1,
+    ]): shift = shift1 ?? (0, 0);
 }
